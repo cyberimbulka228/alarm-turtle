@@ -1,0 +1,29 @@
+-- alarm.lua
+-- Шумящая черепашка-сирена
+
+local speaker = peripheral.find("speaker")  -- Находим динамик (на черепашке или рядом)
+
+if not speaker then
+    error("Динамик не найден! Установите динамик на черепашку или рядом с ней.")
+end
+
+-- Функция звука тревоги (один цикл)
+local function alarmSound()
+    -- Громкий, резкий звук, похожий на сирену
+    speaker.playSound("minecraft:block.note_block.pling", 1.0, 0.5)  -- Низкий тон
+    sleep(0.15)
+    speaker.playSound("minecraft:block.note_block.pling", 1.0, 1.0)  -- Средний
+    sleep(0.15)
+    speaker.playSound("minecraft:block.note_block.pling", 1.0, 1.5)  -- Высокий
+    sleep(0.15)
+    speaker.playSound("minecraft:block.note_block.pling", 1.0, 2.0)  -- Очень высокий
+end
+
+-- Основной цикл тревоги
+print("=== СИРЕНА АКТИВИРОВАНА ===")
+print("Нажмите Ctrl+T для остановки")
+
+while true do
+    alarmSound()
+    sleep(0.5)  -- Пауза между циклами сирены
+end
